@@ -1,0 +1,293 @@
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #f7f8fc;
+  color: #20243a;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1200px, 92%);
+  margin: auto;
+  padding: 40px 0 70px;
+}
+
+.header {
+  padding: 45px;
+  border-radius: 24px;
+  background: linear-gradient(120deg, #35246e, #7755c9);
+  color: white;
+  margin-bottom: 42px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: .8;
+}
+
+.header h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 10px;
+}
+
+.featured-section,
+.products-section,
+.add-section {
+  margin-bottom: 42px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.featured-card,
+.product-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #20243a0d;
+}
+
+.featured-card {
+  padding: 14px;
+}
+
+.featured-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+}
+
+.featured-card h3 {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.toolbar {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.toolbar input,
+.toolbar select,
+.add-section input {
+  padding: 13px 15px;
+  border: 1px solid #dedfeb;
+  border-radius: 10px;
+  background: white;
+  min-width: 0;
+}
+
+.toolbar input {
+  flex: 1;
+}
+
+.add-section form {
+  display: flex;
+  gap: 12px;
+}
+
+.add-section input {
+  flex: 1;
+}
+
+.add-section button,
+.pagination button {
+  border: none;
+  border-radius: 9px;
+  padding: 12px 18px;
+  background: #6042ae;
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: #f1f0f8;
+  padding: 15px;
+}
+
+.product-info {
+  padding: 18px;
+}
+
+.category {
+  color: #7654bb;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.product-info h3 {
+  margin: 8px 0;
+}
+
+.product-info p {
+  color: #777b8d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.product-bottom,
+.section-heading,
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-bottom {
+  margin-top: 18px;
+}
+
+.product-bottom strong {
+  color: #6042ae;
+  font-size: 20px;
+}
+
+.delete-button {
+  background: #fff0f0;
+  color: #c43e3e;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+
+.pagination {
+  justify-content: center;
+  gap: 20px;
+  margin-top: 35px;
+}
+
+.pagination button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #c43e3e;
+  margin-top: 12px;
+}
+
+@media (max-width: 800px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .header {
+    padding: 28px 20px;
+  }
+
+  .products-grid,
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar,
+  .add-section form {
+    flex-direction: column;
+  }
+}
+
+.product-card {
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px #20243a18;
+}
+
+.product-card:focus-visible {
+  outline: 3px solid #6042ae;
+  outline-offset: 3px;
+}
+
+.details-container {
+  width: min(1100px, 92%);
+  margin: auto;
+  padding: 40px 0;
+}
+
+.back-button {
+  background: #6042ae;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 20px;
+  margin-bottom: 25px;
+}
+
+.details-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.details-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+}
+
+.details-info h1 {
+  margin: 15px 0;
+}
+
+.details-info h2 {
+  color: #6042ae;
+  margin: 20px 0;
+}
+
+.details-info p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .details-card {
+    grid-template-columns: 1fr;
+  }
+}
