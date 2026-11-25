@@ -1,6 +1,5 @@
 
-import { useState, useEffect } from "react"
-import axios from "axios"
+import { useQuery } from "@tanstack/react-query"
 import {
   fetchProducts,
   fetchProductsByCategory,
@@ -13,68 +12,31 @@ export function useProducts({
   limit = 12,
   skip = 0,
 } = {}) {
-  const [state, setState] = useState({
-    status: "loading",
-    data: null,
-    error: null,
-  })
+  return useQuery({
+    queryKey: ["products", { category, query, limit, skip }],
 
-  useEffect(() => {
-    const controller = new AbortController()
-
-    async function loadProducts() {
-      setState((previous) => ({
-        ...previous,
-        status: "loading",
-        error: null,
-      }))
-
-      try {
-        let result
-
-        if (query.trim()) {
-          result = await searchProducts(query, {
-            limit,
-            skip,
-            signal: controller.signal,
-          })
-        } else if (category) {
-          result = await fetchProductsByCategory(category, {
-            limit,
-            skip,
-            signal: controller.signal,
-          })
-        } else {
-          result = await fetchProducts({
-            limit,
-            skip,
-            signal: controller.signal,
-          })
-        }
-
-        setState({
-          status: "success",
-          data: result,
-          error: null,
-        })
-      } catch (error) {
-        if (
-          axios.isCancel(error) ||
-          error.code === "ERR_CANCELED"
-        ) return
-
-        setState({
-          status: "error",
-          data: null,
-          error,
+    queryFn: ({ signal }) => {
+      if (query.trim()) {
+        return searchProducts(query, {
+          limit,
+          skip,
+          signal,
         })
       }
-    }
 
-    loadProducts()
+      if (category) {
+        return fetchProductsByCategory(category, {
+          limit,
+          skip,
+          signal,
+        })
+      }
 
-    return () => controller.abort()
-  }, [category, query, limit, skip])
-
-  return state
+      return fetchProducts({
+        limit,
+        skip,
+        signal,
+      })
+    },
+  })
 }

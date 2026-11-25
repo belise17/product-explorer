@@ -2,13 +2,13 @@
 import { useProduct } from "../hooks/useProduct"
 
 function ProductDetails({ productId, onBack }) {
-  const { status, data, error } = useProduct(productId)
+  const { data, error, isPending, isError } = useProduct(productId)
 
-  if (status === "loading") {
+  if (isPending) {
     return <p className="loading">Loading product details...</p>
   }
 
-  if (status === "error") {
+  if (isError) {
     return <p className="error">{error?.message}</p>
   }
 
